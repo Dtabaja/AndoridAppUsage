@@ -6,10 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.icu.util.Calendar;
 import android.media.RingtoneManager;
-import android.os.Build;
 import android.util.Log;
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.core.app.JobIntentService;
 
 import java.util.HashMap;
@@ -26,7 +23,7 @@ public class BackgroundService extends JobIntentService {
     }
 
     @Override
-    protected void onHandleWork(@NonNull Intent intent) {
+    protected void onHandleWork(Intent intent) {
         internalDataBase = new InternalDataBase(this);
         List<TrackedInfo> trackedAppInfos = internalDataBase.getAllRows();
 

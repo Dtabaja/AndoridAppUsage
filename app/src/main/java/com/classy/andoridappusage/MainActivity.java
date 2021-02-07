@@ -32,8 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
             Notifications.resetIsUsageExceededData(getApplicationContext());
             startBackgroundService();
-            openUsageDialog();
-            //openDialog();
+            if(!Utils.isUsageAccessAllowed(this)) {
+                openUsageDialog();
+            }
         }
 
         @Override
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             appListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
-                    Intent intent = new Intent(MainActivity.this, ChartActivity.class);
+                    Intent intent = new Intent(MainActivity.this, AppInfoActivity.class);
                     intent.putExtra("packageName", appInfoList.get(i).getPackageName());
                     intent.putExtra("appName", appInfoList.get(i).getAppName());
                     startActivity(intent);
@@ -112,8 +113,16 @@ public class MainActivity extends AppCompatActivity {
                 .setCancelable(false);
         builder.show();
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-
+        if (requestCode == LAUNCH_SETTINGS_ACTIVITY) {
+            if(Utils.isUsageAccessAllowed(this)) {
+                Notifications.scheduleNotification(this);
+            }
+        }
+    }
         @Override
         protected void onDestroy() {
             super.onDestroy();
