@@ -45,8 +45,6 @@ public class AppListAdapter extends BaseAdapter {
 
             listViewHolder.appName = convertView.findViewById(R.id.list_app_name);
             listViewHolder.appIcon = convertView.findViewById(R.id.list_app_icon);
-            listViewHolder.isUsageExceeded = convertView.findViewById(R.id.isUsageExceeded);
-            listViewHolder.isTracked = convertView.findViewById(R.id.isTracked);
             convertView.setTag(listViewHolder);
         }
         else {
@@ -54,12 +52,7 @@ public class AppListAdapter extends BaseAdapter {
         }
         listViewHolder.appName.setText(appInfoList.get(position).getAppName());
         listViewHolder.appIcon.setImageDrawable(appInfoList.get(position).getIcon());
-        if(appInfoList.get(position).getIsUsageExceeded())
-            listViewHolder.isUsageExceeded.setVisibility(View.VISIBLE);
-        else listViewHolder.isUsageExceeded.setVisibility(View.INVISIBLE);
-        if(appInfoList.get(position).getIsTracked())
-            listViewHolder.isTracked.setVisibility(View.VISIBLE);
-        else listViewHolder.isTracked.setVisibility(View.INVISIBLE);
+
 
         return convertView;
     }
@@ -67,7 +60,6 @@ public class AppListAdapter extends BaseAdapter {
     class ViewHolder {
         TextView appName;
         ImageView appIcon;
-        ImageView isUsageExceeded;
-        TextView isTracked;
+
     }
 }

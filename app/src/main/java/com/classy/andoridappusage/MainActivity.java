@@ -1,7 +1,6 @@
 package com.classy.andoridappusage;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -29,9 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
             internalDataBase = new InternalDataBase(this);
             appListView = findViewById(R.id.app_list);
-
-            Notifications.resetIsUsageExceededData(getApplicationContext());
-            startBackgroundService();
             if(!Utils.isUsageAccessAllowed(this)) {
                 openUsageDialog();
             }
@@ -45,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
         private List<AppInfo> getAppInfoList() {
             PackageManager packageManager = getPackageManager();
-            List<PackageInfo> packageInfoList = packageManager.getInstalledPackages(PackageManager.GET_ACTIVITIES);
+            List<PackageInfo> packageInfoList =
+                    packageManager.getInstalledPackages(PackageManager.GET_ACTIVITIES);
             List<AppInfo> appList = new ArrayList<>();
 
             for (int i = 0; i < packageInfoList.size(); i++) {
@@ -55,16 +52,8 @@ public class MainActivity extends AppCompatActivity {
                     Drawable appIcon = packageInfo.applicationInfo.loadIcon(packageManager);
                     String packageName = packageInfo.packageName;
 
-                    TrackedInfo trackedAppInfo = internalDataBase.getRow(packageName);
-                    if(trackedAppInfo != null) {
-                        boolean isUsageExceeded = trackedAppInfo.getIsUsageExceeded() == 1;
-                        appList.add(new AppInfo(appName,
-                                appIcon, packageName, true, isUsageExceeded));
-                    }
-                    else {
-                        appList.add(new AppInfo(appName,
-                                appIcon, packageName, false, false));
-                    }
+                    appList.add(new AppInfo(appName,
+                            appIcon, packageName));
                 }
             }
             Collections.sort(appList);
@@ -87,11 +76,7 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-        private void startBackgroundService() {
-            if(Utils.isUsageAccessAllowed(this)) {
-                Notifications.scheduleNotification(getApplicationContext());
-            }
-        }
+
     private void openUsageDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Usage Access Needed :(")
@@ -113,17 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 .setCancelable(false);
         builder.show();
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == LAUNCH_SETTINGS_ACTIVITY) {
-            if(Utils.isUsageAccessAllowed(this)) {
-                Notifications.scheduleNotification(this);
-            }
-        }
-    }
-        @Override
+   @Override
         protected void onDestroy() {
             super.onDestroy();
             internalDataBase.close();

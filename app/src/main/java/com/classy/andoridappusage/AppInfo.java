@@ -6,15 +6,13 @@ public class AppInfo implements Comparable<AppInfo>{
     private String appName;
     private Drawable icon;
     private String packageName;
-    private boolean isTracked;
-    private boolean isUsageExceeded;
 
-    AppInfo(String appName, Drawable icon, String packageName, boolean isTracked, boolean isUsageExceeded) {
+
+    AppInfo(String appName, Drawable icon, String packageName) {
         this.appName = appName;
         this.icon = icon;
         this.packageName = packageName;
-        this.isTracked = isTracked;
-        this.isUsageExceeded = isUsageExceeded;
+
     }
     String getAppName() {
         return appName;
@@ -25,12 +23,7 @@ public class AppInfo implements Comparable<AppInfo>{
     String getPackageName() {
         return packageName;
     }
-    boolean getIsTracked() {
-        return isTracked;
-    }
-    boolean getIsUsageExceeded() {
-        return isUsageExceeded;
-    }
+
 
     @Override
     public int compareTo(AppInfo appInfo) {
