@@ -1,4 +1,5 @@
 package com.classy.andoridappusage;
+
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.icu.util.Calendar;
@@ -8,12 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.HashMap;
 
 public class AppInfoActivity extends AppCompatActivity {
     private static final String TAG = "AppInfoActivity";
-    private InternalDataBase iniInternalDataBase;
     private String packageName;
     private String appName;
     private TextView appNameView;
@@ -29,10 +31,8 @@ public class AppInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_info);
 
 
-
         packageName = getIntent().getStringExtra("packageName");
         appName = getIntent().getStringExtra("appName");
-        iniInternalDataBase = new InternalDataBase(this);
         appNameView = findViewById(R.id.chart_app_name);
         appIcon = findViewById(R.id.list_app_icon);
         hour = findViewById(R.id.hour);
@@ -40,8 +40,6 @@ public class AppInfoActivity extends AppCompatActivity {
         second = findViewById(R.id.second);
         chartButton = findViewById(R.id.show_chart);
         setAppNameAndImage();
-
-
 
 
         chartButton.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +61,6 @@ public class AppInfoActivity extends AppCompatActivity {
     }
 
 
-
     private void setAppNameAndImage() {
         appNameView.setText(appName);
         PackageManager packageManager = getPackageManager();
@@ -73,7 +70,6 @@ public class AppInfoActivity extends AppCompatActivity {
             Log.d(TAG, "package name not found");
         }
     }
-
 
 
     private void showTimeSpent(int timeSpent) {
@@ -97,10 +93,8 @@ public class AppInfoActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        iniInternalDataBase.close();
     }
 }

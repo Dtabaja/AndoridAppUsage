@@ -26,7 +26,6 @@ public class ChartActivity extends AppCompatActivity {
     private String appName;
     private BarChart barChart;
     private TextView appNameView;
-    private InternalDataBase internalDataBase;
 
 
     @Override
@@ -36,7 +35,6 @@ public class ChartActivity extends AppCompatActivity {
 
         packageName = getIntent().getStringExtra("packageName");
         appName = getIntent().getStringExtra("appName");
-        internalDataBase = new InternalDataBase(this);
 
         barChart = findViewById(R.id.barchart);
         appNameView = findViewById(R.id.chart_app_name);
@@ -83,17 +81,17 @@ public class ChartActivity extends AppCompatActivity {
     private class TimeFormatter implements ValueFormatter {
         @Override
         public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-            if(value == 0) {
+            if (value == 0) {
                 return "0s";
             }
-            int[] usageTimes = Utils.reverseProcessTime((int)value);
+            int[] usageTimes = Utils.reverseProcessTime((int) value);
             String hour = String.valueOf(usageTimes[0]);
             String minute = String.valueOf(usageTimes[1]);
             String second = String.valueOf(usageTimes[2]);
             String time = "";
-            if(usageTimes[0] > 0) time += hour + "h ";
-            if(usageTimes[1] > 0) time += minute + "m ";
-            if(usageTimes[2] > 0) time += second + "s";
+            if (usageTimes[0] > 0) time += hour + "h ";
+            if (usageTimes[1] > 0) time += minute + "m ";
+            if (usageTimes[2] > 0) time += second + "s";
             return time;
         }
     }

@@ -2,7 +2,7 @@ package com.classy.andoridappusage;
 
 import android.graphics.drawable.Drawable;
 
-public class AppInfo implements Comparable<AppInfo>{
+public class AppInfo implements Comparable<AppInfo> {
     private String appName;
     private Drawable icon;
     private String packageName;
@@ -14,12 +14,15 @@ public class AppInfo implements Comparable<AppInfo>{
         this.packageName = packageName;
 
     }
+
     String getAppName() {
         return appName;
     }
+
     Drawable getIcon() {
         return icon;
     }
+
     String getPackageName() {
         return packageName;
     }
