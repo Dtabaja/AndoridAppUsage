@@ -4,16 +4,14 @@ You can also see your last seven days daily usage time of every installed app on
 
  ## Fetures
  
- 
+ # All of my appliction in my moblie, ordered and shown in List.
 <img src="https://github.com/Dtabaja/AndoridAppUsage/blob/master/1.jpeg" width="200">
 
 
-
+# Daily usage of a random application, presented by Hours,Mintues, Seconds.
 <img src="https://github.com/Dtabaja/AndoridAppUsage/blob/master/2.jpeg" width="200">
 
-
-
-
+# Daily usage of the last 7 days of a random applicaiton, ordered and shown in Bar Chart. 
 <img src="https://github.com/Dtabaja/AndoridAppUsage/blob/master/3.jpeg" width="200">
 
 
