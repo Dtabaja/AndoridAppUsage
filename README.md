@@ -4,6 +4,17 @@ You can also see your last seven days daily usage time of every installed app on
 
  ## Fetures
  
+ 
+<img src="https://github.com/Dtabaja/Enigma-SharedPreference/blob/master/1.jpg" width="500">
+
+
+
+<img src="https://github.com/Dtabaja/Enigma-SharedPreference/blob/master/2.jpg" width="500">
+
+
+
+
+<img src="https://github.com/Dtabaja/Enigma-SharedPreference/blob/master/3.jpg" width="500">
 
 
 
