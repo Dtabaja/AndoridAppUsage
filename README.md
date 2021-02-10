@@ -2,7 +2,8 @@
 AndoridAppUsage is Application that show you how much you spend time, on daily basis, in each and every application that in your android moblie .
 You can also see your last seven days daily usage time of every installed app on your device in a bar chart.
 
-
+ ## Fetures
+ 
 
 
 
